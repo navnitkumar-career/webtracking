@@ -1,0 +1,110 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr"
+	xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="${title}"></title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	th:href="@{/plugin/datatables/responsive.dataTables.min.css}">
+<link rel="stylesheet"
+	th:href="@{/plugin/datatables/dataTables.bootstrap5.min.css}">
+<link rel="stylesheet" th:href="@{/css/timetracker.style.min.css}">
+</head>
+<body>
+
+	<section>
+		<div class="body d-flex py-lg-3 py-md-2" th:object="${taskdetails}">
+			<div class="container-xxl">
+				<div class="row align-items-center">
+					<div class="border-0 mb-4">
+						<div
+							class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+							<h3 class="h4 mb-0">Task Details</h3>
+						</div>
+					</div>
+				</div>
+				<!-- Row end  -->
+				<div class="row g-3">
+					<div class="col-md-8">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="mb-5 text-secondary"
+									th:text="${taskdetails.taskName}"></h3>
+								<h4 class="mb-3">Task Description</h4>
+								<p class="fs-6" th:text="${taskdetails.description}"></p>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<ul class="list-group">
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								Task Start Date: <span class=""
+								th:text="${taskdetails.startDate}"></span>
+							</li>
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								Task estimated hour: <span class=""
+								th:text="${taskdetails.estimateHours}"></span>
+							</li>
+
+							<li
+								class="list-group-item d-flex justify-content-between align-items-center">
+								Status:
+								<div th:if="${taskdetails.status} == 'Pending'">
+									<span class="badge bg-warning">Pending</span>
+								</div>
+								<div th:if="${taskdetails.status} == 'Completed'">
+									<span class="badge bg-success">Completed</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<script th:src="@{/js/template.js}"></script>
+	<script>
+		// project data table
+		$(document).ready(function() {
+			$('#myProjectTable').addClass('nowrap').dataTable({
+				responsive : true,
+				columnDefs : [ {
+					targets : [ -1, -3 ],
+					className : 'dt-body-right'
+				} ]
+			});
+			$('.deleterow').on('click', function() {
+				var tablename = $(this).closest('table').DataTable();
+				tablename.row($(this).parents('tr')).remove().draw();
+
+			});
+		});
+	</script>
+
+	<script th:src="@{/js/bundles/libscripts.bundle.js}"></script>
+	<script th:src="@{/js/bundles/dataTables.bundle.js}"></script>
+	<script th:src="@{js/script.js}"></script>
+
+	<script th:src="@{js/bundles/apexcharts.bundle.js}" src=""></script>
+	<script th:src="@{/plugin/light-gallery/js/lightgallery.js}" src=""></script>
+
+	<script th:src="@{js/page/dashboard.js}" src=""></script>
+</body>
+
+<!-- Mirrored from www.pixelwibes.com/template/timetracker/html/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Feb 2023 05:31:10 GMT -->
+</html>

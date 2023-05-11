@@ -1,0 +1,162 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr"
+	xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="${title}"></title>
+
+</head>
+<body>
+
+	<section>
+
+		<!-- Body: Body -->
+		<div class="body d-flex py-3">
+			<div class="container-xxl">
+				<div class="row g-3 mb-3 align-items-center">
+					<div class="col-xl-7 col-lg-12 col-md-12">
+						<ul class="nav nav-tabs tab-body-header rounded">
+							<li class="nav-item"><a class="nav-link" th:href="@{/index}">TOTAL</a></li>
+							<li class="nav-item"><a class="nav-link"
+								th:href="@{/todaysData}">TODAY</a></li>
+							<li class="nav-item"><a class="nav-link " th:href="@{/yesterdayData}">YESTERDAY</a></li>
+							<li class="nav-item"><a class="nav-link "
+								th:href="@{/lastSevenDaysData}">PAST 7 DAYS</a></li>
+							
+						</ul>
+					</div>
+
+				</div>
+				<div class="row g-3">
+					<div class="col-md-12">
+						<div class="tab-content mt-1">
+							<div class="tab-pane fade show active" id="summery-today">
+								<div class="row g-3 mb-3 row-deck">
+									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+										<div class="card">
+											<div class="card-body py-xl-4 py-3">
+												<span class="text-muted">Total time tracked</span>
+												<!-- <p th:text="${groupedTodaysTimeTrackedResult.duration}"></p> -->
+												<div
+													th:if="${groupedTodaysTimeTrackedResult.duration} == ''">
+													<span class="fs-6 fw-bold me-2"><p>No Time</p></span>
+												</div>
+												<div
+													th:if="${groupedTodaysTimeTrackedResult.duration} != ''">
+													<span class="fs-6 fw-bold me-2"><p
+															th:text="${T(java.util.concurrent.TimeUnit).SECONDS.toMinutes(groupedTodaysTimeTrackedResult.duration.intValue())} +' Minutes '+${groupedTodaysTimeTrackedResult.duration.longValue() % 60} +' Seconds'"></p>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+										<div class="card">
+											<div class="card-body py-xl-4 py-3 position-relative">
+												<span class="text-muted">Total Key Count</span>
+												<div>
+													<span class="fs-6 fw-bold me-2"><p
+															th:text="${groupedAllKeyCountResult.keyCount}"></p></span>
+												</div>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+										<div class="card">
+											<div class="card-body py-xl-4 py-3 position-relative">
+												<span class="text-muted">Total Mouse Click Count</span>
+												<div>
+													<span class="fs-6 fw-bold me-2"><p
+															th:text="${groupedAllMouseClickCountResult.clickCount}"></p></span>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- row end -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row g-3 mb-3 row-deck">
+					<div class="col-lg-12 col-xl-6">
+						<div class="card">
+							<div
+								class="card-header d-flex justify-content-between align-items-center bg-transparent border-bottom-0 py-3">
+								<h6 class="m-0 fw-bold">Total Task wise</h6>
+							</div>
+
+							<div class="card-body">
+								<div th:each="result,rowIndex :${groupedResult}"
+									class="site-block-list d-flex align-items-center flex-wrap justify-content-sm-between mb-3">
+									<div class="site-list w-30">
+										<p th:text="${rowIndex.count}"></p>
+									</div>
+									<div class="site-list w-30">
+										<p style="color: red;"
+											th:href="@{'/taskDetails/taskId/'+${result.taskId}}">
+											<span th:text="${result.taskId}"></span>
+										</p>
+									</div>
+
+									<div class="site-time">
+										<span class="fw-bold"><p
+												th:text="${T(java.util.concurrent.TimeUnit).SECONDS.toMinutes(result.duration.intValue())} +' Minutes '+${result.duration.longValue() % 60} +' Seconds'"></p></span>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 col-xl-6">
+						<div class="card">
+							<div
+								class="card-header d-flex justify-content-between align-items-center bg-transparent border-bottom-0 py-3">
+								<h6 class="m-0 fw-bold">Total Employee wise</h6>
+							</div>
+							<div class="card-body">
+								<div th:each="result,rowIndex :${groupedEmployeeWiseResult}"
+									class="site-block-list d-flex align-items-center flex-wrap justify-content-sm-between mb-3">
+									<div class="site-list w-30">
+										<p th:text="${rowIndex.count}"></p>
+									</div>
+									<div class="site-list w-30">
+										<p style="color: red;"
+											th:href="@{'/taskDetails/taskId/'+${result.employeeId}}">
+											<span th:text="${result.employeeId}"></span>
+										</p>
+									</div>
+									<div class="site-time">
+										<span class="fw-bold"><p
+												th:text="${T(java.util.concurrent.TimeUnit).SECONDS.toMinutes(result.duration.intValue())} +' Minutes '+${result.duration.longValue() % 60} +' Seconds'"></p></span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal Custom Settings-->
+	</section>
+
+	<script src="" th:src="@{js/script.js}"></script>
+	<script th:src="@{js/bundles/libscripts.bundle.js}" src=""></script>
+	<script th:src="@{js/bundles/apexcharts.bundle.js}" src=""></script>
+	<script th:src="@{plugin/light-gallery/js/lightgallery.js}" src=""></script>
+
+
+	<script th:src="@{js/template.jss}" src=""></script>
+	<script th:src="@{js/page/dashboard.js}" src=""></script>
+</body>
+
+<!-- Mirrored from www.pixelwibes.com/template/timetracker/html/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Feb 2023 05:31:10 GMT -->
+</html>

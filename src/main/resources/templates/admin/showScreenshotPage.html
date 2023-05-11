@@ -1,0 +1,141 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr"
+	xmlns:th="http://www.thymeleaf.org"
+	th:replace="admin/base::layout(~{::section})">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="${title}"></title>
+<link rel="stylesheet"
+	th:href="@{/plugin/datatables/responsive.dataTables.min.css}">
+<link rel="stylesheet"
+	th:href="@{/plugin/datatables/dataTables.bootstrap5.min.css}">
+
+<link rel="stylesheet" th:href="@{/css/timetracker.style.min.css}">
+</head>
+<body>
+
+	<section>
+
+		<!-- <div th:each="(id, dateScreenshotsMap) : ${screenshotsMap}">
+			<h2>ID: ${id}</h2>
+			<div th:each="(date, screenshots) : ${dateScreenshotsMap}">
+				<h3>Date: ${date}</h3>
+				<div th:each="screenshot : ${screenshots}">
+					<img th:src="'data:image/png;base64,' + ${screenshot}"
+						alt="Screenshot">
+				</div>
+			</div>
+		</div> -->
+		<!-- 
+		<h1>Screenshot Dashboard</h1>
+ -->
+		<!-- main body area -->
+		<div class="main px-lg-4 px-md-4">
+
+			<div class="body d-flex py-3">
+				<div class="container-xxl">
+					<div class="row align-items-center">
+						<div class="border-0 mb-4">
+							<div
+								class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom">
+								<h3 class="h4 mb-0">Screencasts</h3>
+							</div>
+						</div>
+					</div>
+					<div class="row g-3" th:each="idDir : ${idDirs}">
+						<div class="col-lg-12 col-md-12">
+							<div class="tab-content">
+								<div class="tab-pane fade show active" id="summery-today">
+									<div class="row pb-3 row-deck">
+										<div class="col-xl-12">
+											<div class="card">
+												<div class="card-body" id="aniimated-thumbnials">
+													<div class="row g-3"
+														th:each="dateDir : ${idDir.listFiles()}">
+														<div class="col-12">
+															<div class="timezon-block py-3">
+
+																<b><span class="text-muted" th:text="${dateDir.getName()}"></span></b> <br/> <b>USER ID :<span th:text="${idDir.getName()}"></span> </b><br/><br/>
+																<div >
+																	<!-- <h3 th:text="${screenshot.absolutePath}"></h3> -->
+
+																	<div
+																		class="row g-3 row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-6">
+																		<div class="col" th:each="screenshot : ${dateDir.listFiles()}">
+																			<div class="screen-card  p-2 border">
+
+																				<a
+																					th:href="@{/TimeTracker/2023/{id}/{date}/{screenshot}(id=${idDir.getName()}, date=${dateDir.getName()}, screenshot=${screenshot.getName()})}">
+																					<img class="img-fluid img-thumbnail"
+																					th:src="@{/TimeTracker/2023/{id}/{date}/{screenshot}(id=${idDir.getName()}, date=${dateDir.getName()}, screenshot=${screenshot.getName()})}"
+																					alt="">
+																				</a>
+																				<div
+																					class="user-profile d-flex align-items-center mt-3">
+																					<!-- <img class="avatar rounded-circle"
+																						th:src="@{/TimeTracker/2023/{id}/{date}/{screenshot}(id=${idDir.getName()}, date=${dateDir.getName()}, screenshot=${screenshot.getName()})}"
+																						alt="Screenshot" /> -->
+																					<div class="u-info ms-2">
+																						<span class="fw-bold d-block" th:text="${screenshot.getName()}"></span> 
+																					</div>
+																				</div>
+																				<div
+																					class="user-activity d-flex justify-content-between">
+																					<div class="keybord-block w-50 pe-1">
+																						<i class="icofont-ui-keyboard "></i>
+																						<div class="progress" style="height: 5px;">
+																							<div class="progress-bar bg-success"
+																								role="progressbar" style="width: 25%;"
+																								aria-valuenow="25" aria-valuemin="0"
+																								aria-valuemax="100"></div>
+																						</div>
+																					</div>
+																					<div class="mouse-block w-50 ps-1 text-end">
+																						<i class="icofont-wireless-mouse "></i>
+																						<div class="progress" style="height: 5px;">
+																							<div class="progress-bar bg-success"
+																								role="progressbar" style="width: 25%;"
+																								aria-valuenow="25" aria-valuemin="0"
+																								aria-valuemax="100"></div>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="../js/template.js"></script>
+
+
+	<script src="" th:src="@{js/script.js}"></script>
+	<script th:src="@{js/bundles/libscripts.bundle.js}" src=""></script>
+	<script th:src="@{js/bundles/apexcharts.bundle.js}" src=""></script>
+	<script th:src="@{plugin/light-gallery/js/lightgallery.js}" src=""></script>
+
+	<script th:src="@{js/bundles/dataTables.bundle.js}"></script>
+	<script th:src="@{js/template.jss}" src=""></script>
+	<script th:src="@{js/page/dashboard.js}" src=""></script>
+</body>
+
+<!-- Mirrored from www.pixelwibes.com/template/timetracker/html/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Feb 2023 05:31:10 GMT -->
+</html>

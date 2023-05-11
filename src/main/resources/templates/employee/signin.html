@@ -1,0 +1,148 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr"
+	xmlns:th="http://www.thymeleaf.org">
+
+<!-- Mirrored from www.pixelwibes.com/template/timetracker/html/dist/ui-elements/auth-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Feb 2023 05:31:53 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Work-Tracking :: Employee Dashboard</title>
+
+<link rel="icon" th:href="@{/images/favicon.ico}" href=""
+	type="image/x-iscon">
+
+<link rel="stylesheet" th:href="@{/css/timetracker.style.min.css}"
+	href="">
+
+</head>
+<body>
+	<div id="timetracker-layout" class="theme-mist">
+
+		<!-- main body area -->
+		<div class="main p-2 py-3 p-xl-5">
+
+			<!-- Body: Header -->
+			<div class="container-xxl">
+				<!-- header rightbar icon -->
+				<div class="row align-items-center">
+					<div class="col">
+						<a href="#" class="d-flex align-item-center"> <i
+							class="icofont-stopwatch fs-3 mt-1"></i>
+							<h2 class="mb-0 mt-0 mx-2">WORK TRACKING SYSTEM</h2>
+						</a>
+					</div>
+					<div class="col-auto">
+						<div class="d-flex align-item-center">
+							<div class="dropdown">
+								<a class="nav-link dropdown-toggle pulse" href="#" role="button"
+									data-bs-toggle="dropdown"> <img
+									src="../assets/images/flag/GB.png" alt="">
+								</a>
+								<div
+									class="dropdown-menu rounded-lg shadow border-0  dropdown-menu-md-end p-0 m-0">
+									<div class="card border-0">
+										<ul class="list-unstyled py-2 px-3">
+											<li><a href="#" class=""><img
+													src="../assets/images/flag/GB.png" alt=""> English</a></li>
+											<li><a href="#" class=""><img
+													src="../assets/images/flag/DE.png" alt=""> German</a></li>
+											<li><a href="#" class=""><img
+													src="../assets/images/flag/FR.png" alt=""> French</a></li>
+											<li><a href="#" class=""><img
+													src="../assets/images/flag/IT.png" alt=""> Italian</a></li>
+											<li><a href="#" class=""><img
+													src="../assets/images/flag/RU.png" alt=""> Russian</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Body: Body -->
+			<div class="body d-flex p-0 p-md-2 p-xl-5">
+				<div class="container-xxl">
+					<div class="row g-0 border border-secondary rounded-3 mt-2 mt-md-0">
+
+						<div
+							class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center auth-h100">
+							<div class="qr-block text-center">
+								<img style="height: 540px;" th:src="@{'/images/work_space.jpg'}"
+									class="img-fluid my-4">
+							</div>
+						</div>
+						<div
+							class="col-lg-6 d-flex justify-content-center align-items-center auth-h100 bg-secondary py-2 py-md-0">
+							<div class="d-flex flex-column p-2">
+								<h1>Employee Login</h1>
+								<span>Welcome back! Log In with your Email and OTP</span>
+								<!-- <ul class="nav nav-pills mt-4" role="tablist">
+									<li class="nav-item"><a class="nav-link active"
+										data-bs-toggle="tab" href="#Email" role="tab">Email</a></li>
+								</ul> -->
+								<div class="tab-content mt-4 mb-3">
+									<div class="tab-pane fade show active" id="Email">
+										<div class="card">
+											<div class="card-body p-4">
+												<form th:action="@{/employee/send-otp}" method="post">
+													<div th:if="${param.error}" class="alert alert-danger">
+														Invalid userName and Password</div>
+													<div th:if="${param.logout}" class="alert alert-danger">
+														You have been logged out</div>
+													<div th:if="${session.message}" class="container">
+														<div class="alert alert-danger my-2 text-center"
+															role="alert">
+															<span th:text="${session.message}"> </span>
+														</div>
+													</div>
+													<div class="mb-3">
+														<label class="form-label fs-6">Email address</label> <input
+															name="employeeEmail" type="email" class="form-control">
+													</div>
+
+													<button type="submit" name="submit"
+														class="btn btn-primary text-uppercase py-2 fs-5 w-100 mt-2">SEND
+														OTP</button>
+
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<a href="auth-password-reset.html" title="#"
+									class="text-primary text-decoration-underline">Forgot
+									password?</a>
+								<!-- <a href="auth-signup.html" title="#"
+									class="text-primary text-decoration-underline">Register now</a> -->
+
+							</div>
+						</div>
+
+
+					</div>
+					<!-- End Row -->
+
+				</div>
+			</div>
+
+			<!-- Modal Custom Settings-->
+
+
+
+
+		</div>
+
+	</div>
+
+	<script th:src="@{js/bundles/libscripts.bundle.js}" src=""></script>
+
+	<script th:src="@{js/template.js}" src=""></script>
+
+</body>
+
+<!-- Mirrored from www.pixelwibes.com/template/timetracker/html/dist/ui-elements/auth-signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Feb 2023 05:31:53 GMT -->
+</html>

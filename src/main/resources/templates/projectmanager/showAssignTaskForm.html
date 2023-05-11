@@ -1,0 +1,105 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr"
+	xmlns:th="http://www.thymeleaf.org"
+	th:replace="projectmanager/base::layout(~{::section})">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="${title}"></title>
+
+</head>
+<body>
+
+	<section>
+		<div class="body d-flex py-3">
+			<div class="container-xxl">
+				<div class="row align-items-center">
+					<div class="border-0 mb-4">
+						<div
+							class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+							<h3 class="h4 mb-0">Assign Task</h3>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="row g-3">
+				<div class="col-12">
+
+					<div class="tab-content mt-3">
+						<div class="tab-pane active show" id="Company_Settings">
+							<div class="card mb-3">
+								<div class="card-header p-3">
+									<h5 class="card-title"></h5>
+								</div>
+								<div class="card-body">
+									<form class="row g-3" th:object="${task}"
+										th:action="@{/projectManager/assignTaskProcess}" method="post">
+
+										<input type="hidden" th:value="${task.taskId}" name="taskId">
+										<div class="col-md-4 col-sm-12">
+											<div class="form-group">
+												<label class="form-label">Task Name</label> <input
+													th:value="${task.taskName}" class="form-control"
+													type="text">
+											</div>
+										</div>
+										<div class="col-sm-6 col-md-6 col-lg-3">
+											<div class="form-group">
+												<label class="form-label">Assign Task To Employee </label> <select
+													class="form-control" name="employeeId">
+
+													<option th:each="allEmployee:${allEmployee}"
+														th:value="${allEmployee.employeeId}"><span
+															th:text="${allEmployee.firstName}+' '+${allEmployee.lastName}"></span></option>
+
+												</select>
+											</div>
+										</div>
+										<div class="row g-3 mb-3">
+											<div class="col-sm-6">
+												<label for="" class="form-label">Task Start Date</label> <input
+													type="date" class="form-control" id="startDate"
+													th:value="${task.startDate}">
+											</div>
+											
+										</div>
+										<div class="col-12">
+											<div class="form-group">
+												<label class="form-label">Task Description</label>
+												<textarea class="form-control" th:text="${task.description}"
+													aria-label="With textarea"></textarea>
+											</div>
+										</div>
+										<div class="col-12 mt-4">
+											<input type="submit" class="btn btn-primary"
+												value="Assign Task">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+	</section>
+
+	<script src="" th:src="@{js/script.js}"></script>
+	<script th:src="@{js/bundles/libscripts.bundle.js}" src=""></script>
+	<script th:src="@{js/bundles/apexcharts.bundle.js}" src=""></script>
+	<script th:src="@{plugin/light-gallery/js/lightgallery.js}" src=""></script>
+
+
+	<script th:src="@{js/template.jss}" src=""></script>
+	<script th:src="@{js/page/dashboard.js}" src=""></script>
+</body>
+
+<!-- Mirrored from www.pixelwibes.com/template/timetracker/html/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 Feb 2023 05:31:10 GMT -->
+</html>
