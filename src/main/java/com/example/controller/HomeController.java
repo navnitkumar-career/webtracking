@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import io.github.pixee.security.Filenames;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -246,10 +247,10 @@ public class HomeController {
 					System.out.println("File is Empty");
 					project.setProjectfile("3.jpeg");
 				} else {
-					project.setProjectfile(file.getOriginalFilename());
+					project.setProjectfile(Filenames.toSimpleFileName(file.getOriginalFilename()));
 					File UPLOAD_DIR = new ClassPathResource("static/").getFile();
 					Path filePath = Paths
-							.get(UPLOAD_DIR.getAbsolutePath() + File.separator + file.getOriginalFilename());
+							.get(UPLOAD_DIR.getAbsolutePath() + File.separator + Filenames.toSimpleFileName(file.getOriginalFilename()));
 					Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 					System.out.println("file upload successfully");
 					project.setStatus("Not Assign");
@@ -370,10 +371,10 @@ public class HomeController {
 					System.out.println("File is Empty");
 					taskMaster.setDocumentationPDF("3.jpeg");
 				} else {
-					taskMaster.setDocumentationPDF(file.getOriginalFilename());
+					taskMaster.setDocumentationPDF(Filenames.toSimpleFileName(file.getOriginalFilename()));
 					File UPLOAD_DIR = new ClassPathResource("static/images/").getFile();
 					Path filePath = Paths
-							.get(UPLOAD_DIR.getAbsolutePath() + File.separator + file.getOriginalFilename());
+							.get(UPLOAD_DIR.getAbsolutePath() + File.separator + Filenames.toSimpleFileName(file.getOriginalFilename()));
 					Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 					System.out.println("file upload successfully");
 					taskMaster.setStatus("Pending");
